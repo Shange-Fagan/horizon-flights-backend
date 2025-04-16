@@ -1621,23 +1621,6 @@ await browser.close();
     res.status(500).json({ success: false, error: "Failed to scrape flights" });
   }
 });
-exports.scrapeAirbnbPosts = functions.https.onRequest(async (req, res) => {
-  try {
-    const searchUrl = req.query.url; // Get searchUrl from query parameter
-
-    if (!searchUrl) {
-      return res.status(400).send("Missing searchUrl parameter.");
-    }
-
-    // Call your scraping function here
-    const data = await scrapeAirbnbPosts(searchUrl);
-
-    res.status(200).json({ success: true, data });
-  } catch (error) {
-    console.error("Error scraping:", error);
-    res.status(500).send("Error scraping Airbnb posts.");
-  }
-});
 
 // Airbnb Scraping based on searchUrl (Original code)
 async function scrapeAirbnbPosts(searchUrl) {
